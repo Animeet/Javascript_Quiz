@@ -1,114 +1,99 @@
-const question = document.querySelector('#question')
-const choices = Array.from(document.querySelectorAll())
+var countdownDisplay = document.querySelector('#count-down');
+var start = document.querySelector('#start')
+var quiz = document.querySelector('#quiz')
+var question = document.getElementById('question');
+var choiceA = document.getElementById('A');
+var choiceB = document.getElementById('B');
+var choiceC = document.getElementById('C');
+var choiceD = document.getElementById('D');
+
+var currentQuestionIndex = 0;
 
 
-let currentQuestion = {}
-let acceptingAnswers = true
-let score = 0
-let questionCounter = 0
-let availableQuestions = []
+// *****  COUNTDOWN  ***** //
 
-let questions = [
+// function initialCountdown() {
+//     var count = 30;
+//     var timer = setInterval(function() {
+//         count--; 
+//         countdownDisplay.innerText = 'Count: ' + count;
+
+//         if (!count) {
+//             clearInterval(timer);
+//             alert('Sorry, time is up!');
+//         }
+//     }, 1000);
+// }
+
+// function init() {
+//     initialCountdown();
+// }
+
+// init();
+
+
+// ***** QUESTIONS & ANSWERS ***** //
+
+var questions = [
     {
-        question: 'This is a question',
-        choice0: 'answer',
-        choice1: 'answer',
-        choice2: 'answer',
-        choice3: 'answer',
-        answer: 3,
+        question: 'Javascript is an _______ language?',
+        choiceA: 'Object-Oriented',
+        choiceB: 'Object-Based',
+        choiceC: 'Procedural',
+        choiceD: 'None of the above',
+        answer: 'A'
     },
     {
-        question: 'This is a question',
-        choice0: 'answer',
-        choice1: 'answer',
-        choice2: 'answer',
-        choice3: 'answer',
-        answer: 3,
+        question: 'Which of the following keywords is used to define a variable in Javascript?',
+        choiceA: 'var',
+        choiceB: 'let',
+        choiceC: 'Both A and B',
+        choiceD: 'None of the above',
+        answer: 'C'
     },
     {
-        question: 'This is a question',
-        choice0: 'answer',
-        choice1: 'answer',
-        choice2: 'answer',
-        choice3: 'answer',
-        answer: 3,
+        question: 'Upon encountering empty statements, what does the Javascript Interpreter do?',
+        choiceA: 'Throws an error',
+        choiceB: 'Ignores the statements',
+        choiceC: 'Gives a warning',
+        choiceD: 'None of the above',
+        answer: 'B'
     },
     {
-        question: 'This is a question',
-        choice0: 'answer',
-        choice1: 'answer',
-        choice2: 'answer',
-        choice3: 'answer',
-        answer: 3,
+        question: 'How can a datatype be declared to be a constant type?',
+        choiceA: 'const',
+        choiceB: 'var',
+        choiceC: 'let',
+        choiceD: 'constant',
+        answer: 'A'
     },
     {
-        question: 'This is a question',
-        choice0: 'answer',
-        choice1: 'answer',
-        choice2: 'answer',
-        choice3: 'answer',
-        answer: 3,
-    },
-]
-
-const SCORE_POINTS = 100
-const MAX_QUESTIONS = 5
-
-startGame = () => {
-    questionCounter = 0
-    score = 0
-    availableQuestions = [...questions]
-    getNewQuestion ()
-}
-
-getNewQuestion = () => {
-    if (availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentScore', score)
-
-        return window.location.assign('/end.html')
+        question: 'What is the use of the <noscript> tag in Javascript?',
+        choiceA: 'The contents are displayed by non-JS-based browsers.',
+        choiceB: 'Clears all the cookies and cache.',
+        choiceC: 'Both A and B.',
+        choiceD: 'None of the above.',
+        answer: 'A'
     }
+];
 
-    questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
-    
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex]
-    question.innerText = currentQuestion.question
+var lastQuestion = questions.length - 1;
+var currentQuestion = 0;
 
-    choices.forEach(choice => {
-        const number = choice.dataset['number']
-        choice.innerText = currentQuestion['choice' + number]
-    })
+function showQuestion() {
+    var q = questions[currentQuestion];
 
-    availableQuestions.splice(questionsIndex, 1)
-
-    acceptingAnswers = true
+    question.innerHTML = '<p>'+ q.question +'</p>';
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
 }
 
-choices.forEach(choice => {
-    choice.addEventListener('click', e=> {
-        if(!acceptingAnswers) return
+start.addEventListener("click", startQuiz)
 
-        acceptingAnswers = false
-        const selectedChoices = e.target
-        const selectedAnswer = selectedChoice.dataset['number']
-
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
-
-        if(classToApply === 'correct') {
-            incrementScore(SCORE_POINTS)
-        }
-
-        selectedChoice.parentElement.classList.add(classToApply)
-
-        setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply)
-            getNewQuestion()
-        }, 1000)
-    })
-})
-
-incrementScore = num => {
-    score +=num
-    scoreText.innerText = score
+function startQuiz() {
+    start.style.display = 'none';
+    showQuestion();
+    quiz.style.display= 'block';
 }

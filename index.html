@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,28 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Javascript Quiz</title>
 </head>
+
 <body>
-
-    <!-- HOME MENU -->
     <div class="container">
-        <div class="quiz-box">
-            <div id="quiz">
-                <section class="home-header">
-                    <h1>Are you ready to begin?</h1>
-                </section>
 
-                <section class="home-buttons">
-                    <a href="game.html" id="start-btn">Start</a>
-                    <a href="highschores.html" id="highscore-btn">Highscores</a>
-                </section>
+        <section class="home">
+            <div id="start">Start Quiz!</div>
+            <div id="highscore">Highscores!</div>
+        </section>
+
+        <div id="quiz" style="display: none">
+
+            <section class="header">
+                <p id="count-down">Count: 30</p>
+            </section>
+
+            <div class="question">What is an array?</div>
+
+            <div id="choices">
+                <button class="btn" id="A" onclick="checkAnswer('A')">A. </button>
+                <button class="btn" id="B" onclick="checkAnswer('B')">B. </button>
+                <button class="btn" id="C" onclick="checkAnswer('C')">C. </button>
+                <button class="btn" id="D" onclick="checkAnswer('D')">D. </button>
             </div>
         </div>
     </div>
@@ -28,4 +37,5 @@
 
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

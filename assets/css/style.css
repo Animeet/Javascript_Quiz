@@ -28,7 +28,44 @@ background-color: var(--gray);
     height: 100vh;
 }
 
-.quiz-box {
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 30vh;
+    background-color: var(--pink);
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.8); 
+    border: 1px solid black;
+}
+
+#highscore {
+    display: flex;
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 0px 25px;
+    background-color: var(--violet);
+    color: var(--white);
+    padding: 2rem 3rem;
+    text-align: center;
+}
+
+#start {
+    display: flex;
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 25px 0px;
+    background-color: var(--violet);
+    color: var(--white);
+    padding: 2rem 3rem;
+    text-align: center;
+}
+
+#quiz {
+    display: flex;
+    flex-direction: column;
     width: 600px;
     background-color: white;
     padding: 2rem 3rem;
@@ -37,80 +74,21 @@ background-color: var(--gray);
 }
 
 
-/**** HOME PAGE ****/
-
-.home-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bolder;
-    margin-bottom: 25px;
-}
-
-.home-buttons {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 1.5rem 0 0 0;
-}
-
-#start-btn {
-    background-color:var(--violet);
-    text-align: center;
-    color: var(--white);
-    width: 25%;
-    font-size: 1.8rem;
-    border: 2px solid var(--black);
-    border-radius: 5px;
-    margin: 7px 0;
-    padding: 1rem;
-    outline: none;
-    text-decoration: none;
-}
-
-#highscore-btn {
-    background-color:var(--violet);
-    text-align: center;
-    color: var(--white);
-    font-size: 1.8rem;
-    border: 2px solid var(--black);
-    border-radius: 5px;
-    margin: 5px 0;
-    padding: 1rem;
-    outline: none;
-    text-decoration: none;
-}
-
-#highscore-btn:hover {
-    cursor: pointer;
-    background-color: var(--pink);
-    color: var(--black);
-}
-
-#start-btn:hover {
-    cursor: pointer;
-    background-color: var(--pink);
-    color: var(--black);
-}
-
-
-/**** QUIZ PAGES ****/
-
-.quiz-header {
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
 }
 
-.quiz-header #count-down {
+.header #count-down {
     color: var(--black);
     font-size: 1.5rem;
     font-weight: bolder;
     text-decoration: underline;
 }
 
-.quiz-box #question {
+.question {
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--black);
@@ -119,7 +97,7 @@ background-color: var(--gray);
     padding: 5px 0;
 }
 
-.buttons {
+#choices {
     margin: 1.5rem 0 0 0;
 }
 
@@ -140,27 +118,4 @@ background-color: var(--gray);
     cursor: pointer;
     background-color: var(--pink);
     color: var(--black);
-}
-
-#score {
-    color: var(--black);
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 4rem;
-}
-
-.quiz-repeat {
-text-align: center;
-margin: 0 auto;
-}
-
-.quiz-repeat a{
-    font: 1.5rem;
-    font-weight: 600;
-    color: var(--white);
-    text-decoration: none;
-    background-color: var(--violet);
-    padding: 1rem;
-    border-radius: 5px;
-    transition: all 1s;
 }
