@@ -5,33 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Javascript Quiz</title>
 </head>
 
 <body>
     <div class="container">
 
-        <section class="home">
-            <div id="start">Start Quiz!</div>
-            <div id="highscore">Highscores!</div>
+        <!-- Start Page -->
+        <section id="start-container" class="home">
+            <button type="button" id="start" class="startBtn radius-right">Start Quiz!</button>
+            <button type="button" id="highscore" class="startBtn radius-left">Highscores!</button>
         </section>
 
-        <div id="quiz" style="display: none">
+
+        <!-- Quiz Section -->
+
+        <div id="quiz" class="home hide">
 
             <section class="header">
-                <p id="count-down">Count: 30</p>
+                <p class="count-down">Count: 30</p>
             </section>
 
-            <div class="question">What is an array?</div>
+            <h2 class="question" id="question-title"></h2>
 
-            <div id="choices">
-                <button class="btn" id="A" onclick="checkAnswer('A')">A. </button>
-                <button class="btn" id="B" onclick="checkAnswer('B')">B. </button>
-                <button class="btn" id="C" onclick="checkAnswer('C')">C. </button>
-                <button class="btn" id="D" onclick="checkAnswer('D')">D. </button>
-            </div>
+            <div id="choices"></div>
         </div>
+        <!-- Quiz Results -->
+
+        
+
+        <!-- High Scores -->
     </div>
 
 

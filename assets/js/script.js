@@ -1,11 +1,30 @@
+// GIVEN I am taking a code quiz
+// WHEN I click the start button
+// THEN a timer starts and I am presented with a question
+
+// WHEN I answer a question
+// THEN I am presented with another question
+
+// WHEN I answer a question incorrectly
+// THEN time is subtracted from the clock
+
+// WHEN all questions are answered or the timer reaches 0
+// THEN the game is over
+
+// WHEN the game is over
+// THEN I can save my initials and score
+
+
+
+
+
 var countdownDisplay = document.querySelector('#count-down');
-var start = document.querySelector('#start')
-var quiz = document.querySelector('#quiz')
-var question = document.getElementById('question');
-var choiceA = document.getElementById('A');
-var choiceB = document.getElementById('B');
-var choiceC = document.getElementById('C');
-var choiceD = document.getElementById('D');
+var startContainer = document.querySelector('#start-container');
+var start = document.querySelector('#start');
+var quizContainer = document.querySelector('#quiz');
+var questionEl = document.getElementById('question-title');
+var choiceContainer = document.getElementById('choices');
+
 
 var currentQuestionIndex = 0;
 
@@ -13,7 +32,7 @@ var currentQuestionIndex = 0;
 // *****  COUNTDOWN  ***** //
 
 // function initialCountdown() {
-//     var count = 30;
+//     var count = 300;
 //     var timer = setInterval(function() {
 //         count--; 
 //         countdownDisplay.innerText = 'Count: ' + count;
@@ -32,68 +51,85 @@ var currentQuestionIndex = 0;
 // init();
 
 
-// ***** QUESTIONS & ANSWERS ***** //
+// * * * * * START QUIZ * * * * * //
+
+start.addEventListener("click", startQuiz)
+
+function startQuiz() {
+    startContainer.classList.add('hide')
+    quizContainer.classList.remove('hide')
+    showQuestion();
+}
+
+
+// * * * * * QUESTIONS & ANSWERS * * * * *  //
 
 var questions = [
     {
         question: 'Javascript is an _______ language?',
-        choiceA: 'Object-Oriented',
-        choiceB: 'Object-Based',
-        choiceC: 'Procedural',
-        choiceD: 'None of the above',
-        answer: 'A'
+        choices: ['Object-Oriented', 'Object-Based', 'Procedural', 'None of the above'],
+        answer: 'Object-Oriented'
     },
     {
         question: 'Which of the following keywords is used to define a variable in Javascript?',
-        choiceA: 'var',
-        choiceB: 'let',
-        choiceC: 'Both A and B',
-        choiceD: 'None of the above',
-        answer: 'C'
+        choices: ['var', 'let', 'Both A and B', 'None of the above'],
+        answer: 'Both A and B'
     },
     {
         question: 'Upon encountering empty statements, what does the Javascript Interpreter do?',
-        choiceA: 'Throws an error',
-        choiceB: 'Ignores the statements',
-        choiceC: 'Gives a warning',
-        choiceD: 'None of the above',
-        answer: 'B'
+        choices: ['Throws an error', 'Ignores the statements', 'Gives a warning', 'None of the above'],
+        answer: 'Ignores the statements'
     },
     {
         question: 'How can a datatype be declared to be a constant type?',
-        choiceA: 'const',
-        choiceB: 'var',
-        choiceC: 'let',
-        choiceD: 'constant',
-        answer: 'A'
+        choices: ['const', 'var', 'let', 'constant'],
+        answer: 'const'
     },
     {
         question: 'What is the use of the <noscript> tag in Javascript?',
-        choiceA: 'The contents are displayed by non-JS-based browsers.',
-        choiceB: 'Clears all the cookies and cache.',
-        choiceC: 'Both A and B.',
-        choiceD: 'None of the above.',
-        answer: 'A'
+        choices: ['The contents are displayed by non-JS-based browsers.', 'Clears all the cookies and cache.', 'Both A and B.', 'None of the above.'],
+        answer: 'The contents are displayed by non-JS-based browsers.'
     }
 ];
 
-var lastQuestion = questions.length - 1;
 var currentQuestion = 0;
 
 function showQuestion() {
     var q = questions[currentQuestion];
 
-    question.innerHTML = '<p>'+ q.question +'</p>';
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    choiceD.innerHTML = q.choiceD;
-}
+    questionEl.textContent = q.question;
 
-start.addEventListener("click", startQuiz)
+    for (var i = 0; i < q.choices.length; i++) {
+        // create
+        var button = document.createElement('button')
 
-function startQuiz() {
-    start.style.display = 'none';
-    showQuestion();
-    quiz.style.display= 'block';
+        // add
+        button.textContent = q.choices[i]
+        button.classList.add('btn')
+
+        // append to the html
+        choiceContainer.append(button)
+    }
+    currentQuestion++;
+
 }
+choiceContainer.append(questionEl)
+
+choices.addEventListener('click', showQuestion);
+
+
+
+
+
+// function checkAnswer (answer) {
+//     var lineBreak = document.getElementById("lineBreak");
+//     lineBreak.style.display = 'block';
+//     answerCheck.style.display = 'block';
+
+//     if(questions[currentQuestion].answer === questions[currentQuestion].choices[answer]) {
+//         correctAns++;
+//         answerCheck.textContent = 'Correct!';
+//     } else {
+//         answerCheck.textContent = 'Wrong! The correct answer is: ' + questions[currentQuestion.answer;]
+//     }
+// }
