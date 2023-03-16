@@ -98,6 +98,7 @@ function showQuestion() {
     var q = questions[currentQuestion];
 
     questionEl.textContent = q.question;
+    choiceContainer.innerHTML = ''
 
     for (var i = 0; i < q.choices.length; i++) {
         // create
@@ -113,7 +114,6 @@ function showQuestion() {
     currentQuestion++;
 
 }
-choiceContainer.append(questionEl)
 
 choices.addEventListener('click', showQuestion);
 
