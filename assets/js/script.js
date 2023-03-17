@@ -18,51 +18,20 @@
 
 
 
-var countdownDisplay = document.querySelector('#count-down');
+var countDown = document.querySelector('.count-down');
 var startContainer = document.querySelector('#start-container');
 var start = document.querySelector('#start');
 var quizContainer = document.querySelector('#quiz');
+
 var questionEl = document.getElementById('question-title');
 var choiceContainer = document.getElementById('choices');
 
-
-var currentQuestionIndex = 0;
-
-
-// *****  COUNTDOWN  ***** //
-
-// function initialCountdown() {
-//     var count = 300;
-//     var timer = setInterval(function() {
-//         count--; 
-//         countdownDisplay.innerText = 'Count: ' + count;
-
-//         if (!count) {
-//             clearInterval(timer);
-//             alert('Sorry, time is up!');
-//         }
-//     }, 1000);
-// }
-
-// function init() {
-//     initialCountdown();
-// }
-
-// init();
+var currentQuestion = 0;
+var correctAns = 0;
+var count = 300;
 
 
-// * * * * * START QUIZ * * * * * //
-
-start.addEventListener("click", startQuiz)
-
-function startQuiz() {
-    startContainer.classList.add('hide')
-    quizContainer.classList.remove('hide')
-    showQuestion();
-}
-
-
-// * * * * * QUESTIONS & ANSWERS * * * * *  //
+// * * * * * STORE Questions & Choices * * * * *  //
 
 var questions = [
     {
@@ -92,7 +61,36 @@ var questions = [
     }
 ];
 
-var currentQuestion = 0;
+
+// * * * * * START QUIZ * * * * * //
+
+
+function startQuiz() {
+    startContainer.classList.add('hide')
+    quizContainer.classList.remove('hide')
+    startTimer();
+    showQuestion();
+}
+
+
+// *****  COUNTDOWN  ***** //
+
+function startTimer() {
+    countDown.innerText = 300
+
+    var timer = setInterval(function(){
+        count--;
+        countDown.innerText = count;
+
+        if (count === 0) {
+            clearInterval(timer)
+        }
+    }, 1000)
+}
+
+
+// * * * * * SHOW Questions & Choices* * * * *  //
+
 
 function showQuestion() {
     var q = questions[currentQuestion];
@@ -111,25 +109,39 @@ function showQuestion() {
         // append to the html
         choiceContainer.append(button)
     }
+
     currentQuestion++;
 
+    //If the currentQuestion is equal to the cards array length, then
+    // we stop the questions, and push user to results page
 }
 
+
+
+function checkAnswer(answer) {
+    if (questions[currentQuestion].answer === questions[currentQuestion].choices[answer]) {
+        correctAns++;
+        answerCheck.textContent = 'Correct!';
+    } else {
+        count -= 30;
+        answerCheck.textContent = "Wrong!";
+        timeLeft = count
+    }
+}
+
+
+
+
+
+function checkAnswer(eventObject) {
+    //Check if the text of the button is == to the answer text of the current question
+    var button = eventObject.target
+}
+
+
+
+
+
 choices.addEventListener('click', showQuestion);
+start.addEventListener("click", startQuiz)
 
-
-
-
-
-// function checkAnswer (answer) {
-//     var lineBreak = document.getElementById("lineBreak");
-//     lineBreak.style.display = 'block';
-//     answerCheck.style.display = 'block';
-
-//     if(questions[currentQuestion].answer === questions[currentQuestion].choices[answer]) {
-//         correctAns++;
-//         answerCheck.textContent = 'Correct!';
-//     } else {
-//         answerCheck.textContent = 'Wrong! The correct answer is: ' + questions[currentQuestion.answer;]
-//     }
-// }

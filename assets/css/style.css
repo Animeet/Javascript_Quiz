@@ -1,5 +1,3 @@
-
-
 :root {
     --violet: rgb(53, 28, 117);
     --pink: rgb(189, 96, 231);
@@ -15,7 +13,7 @@
 }
 
 body {
-background-color: var(--gray);
+    background-color: var(--gray);
 }
 
 
@@ -35,7 +33,7 @@ background-color: var(--gray);
     align-items: center;
     background-color: var(--pink);
     border-radius: 20px;
-    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.8); 
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.8);
     border: 1px solid black;
 }
 
@@ -49,11 +47,11 @@ background-color: var(--gray);
     text-align: center;
 }
 
-.radius-right{
-     border-radius: 0 25px;
+.radius-right {
+    border-radius: 0 25px;
 }
 
-.radius-left{
+.radius-left {
     border-radius: 25px 0;
 }
 
@@ -85,9 +83,18 @@ background-color: var(--gray);
     margin: 1.5rem 0 0 0;
 }
 
+.result {
+    font-size: 1.8rem;
+    font-weight: bolder;
+    padding: 10px 10px;
+    margin: 20px 0;
+    border: 2px solid black;
+    background-color: white;
+}
+
 .btn {
     text-align: left;
-    background-color:var(--violet);
+    background-color: var(--violet);
     color: var(--white);
     width: 100%;
     font-size: 1.8rem;
@@ -104,6 +111,46 @@ background-color: var(--gray);
     color: var(--black);
 }
 
-.hide{
+.end-quiz {
+    display: flex;
+    border: 0 solid black;
+
+    padding: 15px;
+    min-width: 500px;
+    min-height: 250px;
+    border-radius: 15px;
+    text-align: center;
+    justify-content: center;
+    background-color: var(--violet);
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.8);
+}
+
+.end-quiz h1 {
+    margin: 15px;
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.end-quiz h3 {
+    margin: 15px;
+    font-size: 3.2rem;
+    color: var(--white);
+    text-decoration: underline;
+}
+
+.end-quiz h2 {
+    color: var(--black);
+}
+
+.end-quiz input {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.end-quiz button {
+    padding: 5px;
+}
+
+.hide {
     display: none;
 }
