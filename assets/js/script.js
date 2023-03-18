@@ -17,9 +17,9 @@
 
 
 
-
 var countDown = document.querySelector('.count-down');
 var startContainer = document.querySelector('#start-container');
+var endContainer = document.querySelector('#quiz-end');
 var start = document.querySelector('#start');
 var quizContainer = document.querySelector('#quiz');
 
@@ -78,7 +78,7 @@ function startQuiz() {
 function startTimer() {
     countDown.innerText = 300
 
-    var timer = setInterval(function(){
+    var timer = setInterval(function () {
         count--;
         countDown.innerText = count;
 
@@ -93,6 +93,7 @@ function startTimer() {
 
 
 function showQuestion() {
+    console.log(currentQuestion)
     var q = questions[currentQuestion];
 
     questionEl.textContent = q.question;
@@ -105,43 +106,39 @@ function showQuestion() {
         // add
         button.textContent = q.choices[i]
         button.classList.add('btn')
+        button.addEventListener("click", eventHandler)
 
         // append to the html
         choiceContainer.append(button)
     }
+}
+
+start.addEventListener("click", startQuiz)
+
+
+// * * * * * CHECK IF ANSWER IS CORRECT OR INCORRECT * * * * * //
+
+function eventHandler(event) {
+    console.log("button!")
+    console.dir(event.target)
+    console.log(event.target.textContent)
+    console.log(questions[currentQuestion].answer)
+
+    if (questions[currentQuestion].answer === event.target.textContent) {
+        console.log("correct")
+    } else {
+        console.log("wrong")
+        count-=10;
+    }
 
     currentQuestion++;
 
-    //If the currentQuestion is equal to the cards array length, then
-    // we stop the questions, and push user to results page
-}
-
-
-
-function checkAnswer(answer) {
-    if (questions[currentQuestion].answer === questions[currentQuestion].choices[answer]) {
-        correctAns++;
-        answerCheck.textContent = 'Correct!';
+    if(currentQuestion == 5) {
+        console.log("end")
+        endContainer.classList.remove('hide')
+         quizContainer.classList.add('hide')
     } else {
-        count -= 30;
-        answerCheck.textContent = "Wrong!";
-        timeLeft = count
+        showQuestion()
+        
     }
 }
-
-
-
-
-
-function checkAnswer(eventObject) {
-    //Check if the text of the button is == to the answer text of the current question
-    var button = eventObject.target
-}
-
-
-
-
-
-choices.addEventListener('click', showQuestion);
-start.addEventListener("click", startQuiz)
-
