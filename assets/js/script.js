@@ -93,7 +93,6 @@ function startTimer() {
 
 
 function showQuestion() {
-    console.log(currentQuestion)
     var q = questions[currentQuestion];
 
     questionEl.textContent = q.question;
@@ -119,26 +118,17 @@ start.addEventListener("click", startQuiz)
 // * * * * * CHECK IF ANSWER IS CORRECT OR INCORRECT * * * * * //
 
 function eventHandler(event) {
-    console.log("button!")
-    console.dir(event.target)
-    console.log(event.target.textContent)
-    console.log(questions[currentQuestion].answer)
 
     if (questions[currentQuestion].answer === event.target.textContent) {
-        console.log("correct")
     } else {
-        console.log("wrong")
         count-=10;
     }
 
     currentQuestion++;
-
     if(currentQuestion == 5) {
-        console.log("end")
         endContainer.classList.remove('hide')
          quizContainer.classList.add('hide')
     } else {
         showQuestion()
-        
     }
 }
