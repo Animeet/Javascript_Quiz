@@ -32,6 +32,7 @@ var correctAns = 0;
 var count = 300;
 var score_count = 0;
 
+var highscores = JSON.parse(localStorage.getItem('scores')) || []
 
 // * * * * * STORE Questions & Choices * * * * *  //
 
@@ -122,13 +123,13 @@ start.addEventListener("click", startQuiz)
 function eventHandler(event) {
 
     if (questions[currentQuestion].answer === event.target.textContent) {
-        score_count+=25;
+        score_count += 25;
     } else {
-        count-=10;
+        count -= 10;
     }
 
     currentQuestion++;
-    if(currentQuestion == 5) {
+    if (currentQuestion == 5) {
         endContainer.classList.remove('hide')
         quizContainer.classList.add('hide')
         score.innerText = score_count;
@@ -137,16 +138,37 @@ function eventHandler(event) {
     }
 }
 
+function submitScore() {
+    // create intials variable to store the value of the input from the front end
 
-//When high scores is created, getItems from localStorage and populate into cooresponding lines
-    //1st function
-    //Add an eventListener
-    //Create a function that populates the high scores page from the submit button
+    var scoreObj = {
+        score: score,
+        userInitials: ""
+    }
 
-    //2nd function
-    //getItems from LocalStorage and populate into the high scores
+    highscores.push(scoreObj)
+    localStorage.setItem('scores', JSON.stringify(highscores))
 
-    localStorage.setItem('Score', score)
-    localStorage.setItem('Initials', initials)
+}
+submitScore();
 
-    localStorage.getItem('Initials')
+function highscoreInformation() {
+    //pull the information from localStorage
+
+    //createElement ol for the li's that'll store the information
+    var ol = document.createElement('ol');
+    //create a for loop that continuosly places information to the li's
+    for (var i = 0; i < highscores.length; i++) {
+        //createElement li's for the localStorage information to be stored
+        var li = document.createElement('li');
+        //place the information inside of li's
+        li.textContent = highscores[i].userInitials + ' - ' + highscores[i].score
+        //After the information is placed, append the li's to the ol's
+        ol.append(li)
+    }
+    document.querySelector('#highscores').append(ol);
+
+// append the ol to the html
+
+}
+highscoreInformation()
