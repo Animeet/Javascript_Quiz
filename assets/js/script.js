@@ -22,6 +22,7 @@ var startContainer = document.querySelector('#start-container');
 var endContainer = document.querySelector('#quiz-end');
 var start = document.querySelector('#start');
 var quizContainer = document.querySelector('#quiz');
+var score = document.querySelector('#score')
 
 var questionEl = document.getElementById('question-title');
 var choiceContainer = document.getElementById('choices');
@@ -29,6 +30,7 @@ var choiceContainer = document.getElementById('choices');
 var currentQuestion = 0;
 var correctAns = 0;
 var count = 300;
+var score_count = 0;
 
 
 // * * * * * STORE Questions & Choices * * * * *  //
@@ -120,6 +122,7 @@ start.addEventListener("click", startQuiz)
 function eventHandler(event) {
 
     if (questions[currentQuestion].answer === event.target.textContent) {
+        score_count+=25;
     } else {
         count-=10;
     }
@@ -127,8 +130,23 @@ function eventHandler(event) {
     currentQuestion++;
     if(currentQuestion == 5) {
         endContainer.classList.remove('hide')
-         quizContainer.classList.add('hide')
+        quizContainer.classList.add('hide')
+        score.innerText = score_count;
     } else {
         showQuestion()
     }
 }
+
+
+//When high scores is created, getItems from localStorage and populate into cooresponding lines
+    //1st function
+    //Add an eventListener
+    //Create a function that populates the high scores page from the submit button
+
+    //2nd function
+    //getItems from LocalStorage and populate into the high scores
+
+    localStorage.setItem('Score', score)
+    localStorage.setItem('Initials', initials)
+
+    localStorage.getItem('Initials')
